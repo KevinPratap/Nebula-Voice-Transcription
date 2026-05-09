@@ -46,4 +46,5 @@ Run **`Nebula_Mac.sh`** from your terminal.
 - **Right-Click Tray**: Change Microphones, customize Hotkeys, or Copy Last Transcription.
 
 ## 📄 License
-ISC License. Built with ❤️ by Antigravity.
+ISC License.
+
