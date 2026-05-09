@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0; padding: 0;
+            background: rgba(13, 17, 23, 0.9);
+            color: white;
+            font-family: 'Outfit', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .title {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+        .key-display {
+            font-size: 24px;
+            font-weight: 600;
+            color: #9F7AEA;
+            background: rgba(159, 122, 234, 0.1);
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: 1px solid rgba(159, 122, 234, 0.3);
+            min-width: 200px;
+            text-align: center;
+        }
+        .hint {
+            margin-top: 20px;
+            font-size: 11px;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="title">RECORDING NEW HOTKEY</div>
+    <div class="key-display" id="display">Press Keys...</div>
+    <div class="hint">Press Esc to Cancel • Press Enter to Save</div>
+
+    <script>
+        const { ipcRenderer } = require('electron');
+        let currentKeys = [];
+        let finalShortcut = "";
+
+        window.addEventListener('keydown', (e) => {
+            e.preventDefault();
+            
+            if (e.key === 'Escape') {
+                ipcRenderer.send('close-hotkey-window');
+                return;
+            }
+            
+            if (e.key === 'Enter' && finalShortcut) {
+                ipcRenderer.send('save-custom-hotkey', finalShortcut);
+                return;
+            }
+
+            const modifiers = [];
+            if (e.ctrlKey) modifiers.push('Control');
+            if (e.shiftKey) modifiers.push('Shift');
+            if (e.altKey) modifiers.push('Alt');
+            if (e.metaKey) modifiers.push('Command');
+
+            const key = e.key.toUpperCase();
+            if (['CONTROL', 'SHIFT', 'ALT', 'COMMAND', 'META'].includes(key)) {
+                document.getElementById('display').innerText = modifiers.join('+') + '+...';
+                return;
+            }
+
+            finalShortcut = [...modifiers, key].join('+');
+            document.getElementById('display').innerText = finalShortcut;
+        });
+    </script>
+</body>
+</html>

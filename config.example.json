@@ -1,0 +1,9 @@
+{
+    "hotkey": "Alt+Shift+V",
+    "language": "en",
+    "groq_key": "YOUR_GROQ_API_KEY_HERE",
+    "silence_threshold": 130,
+    "silence_duration": 15,
+    "mic_index": null,
+    "last_text": ""
+}
