@@ -4,9 +4,8 @@
 
 Nebula is a "stealth" OS utility that provides near-instant transcription and automation via a simple hotkey. Designed with a premium Glassmorphism aesthetic and a zero-latency audio engine.
 
-![Nebula Dashboard](https://raw.githubusercontent.com/placeholder/nebula/main/preview.png)
-
 ## ✨ Features
+
 
 - **🚀 Near-Instant Transcription**: Powered by Groq + Whisper Large v3 for sub-second voice-to-text.
 - **🎨 Premium UI**: Fluid morphing animations, glassmorphic effects, and dynamic status labels.
